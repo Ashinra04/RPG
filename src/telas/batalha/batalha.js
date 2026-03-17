@@ -23,6 +23,7 @@ const player = {
 let monstrosAtual = null;
 let QuantidadeMonstro = null;
 let numberAliados = null;
+let turno = "plr";
 
 const cenarios = {
     "Floresta": { nivel: 1, },
@@ -94,8 +95,11 @@ window.VerificarAliados = function () {
 
     if (numberAliados === 1) {
         const Aliado1 = document.getElementById("AliadoSprite");
+        const Aliado1Painel = document.getElementById("Py2");
         Aliado1.classList.remove("esconder");
         Aliado1.classList.add("mostrar");
+        Aliado1Painel.classList.remove("esconder");
+        Aliado1Painel.classList.add("mostrar");
     }
 
     if (numberAliados === 2) {
@@ -230,8 +234,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 });
-
-let turno = "plr";
 
 function atualizarTelaBatalha() {
     const divEnemyHP = document.getElementById("HPEnemy1");
