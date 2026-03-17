@@ -1,0 +1,88 @@
+/* Tela de Missão CSS */
+
+#tela-missao {
+    width: 95%;
+    height: 90%;
+    padding: 0px 4px;
+    background-color: rgba(107, 11, 11, 0.425);
+    display: grid;
+    grid-template-columns: repeat(13, 1fr);
+    grid-template-rows: repeat(9, 1fr);
+    justify-items: stretch; 
+    align-items: stretch;
+    padding: 20px; 
+    gap: 15px;    
+}
+
+.top-missoes {
+    background-color: rgb(110, 20, 20);
+    height: 80%;
+    width: 100%;
+    grid-column: 1 / 14;
+    grid-row: 1 / 2;
+    display: flex ;
+}
+
+.top-missoes h2 {
+    background-color: brown;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#top-missoes button {
+    width: 10px;
+    height: 10px;
+    background: rgb(190, 154, 154);
+    color: black;
+}
+
+.quests {
+    height: 100%; 
+    width: 100%;
+    background-color: brown;
+    border: 2px solid #5a4b66;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#missao1, #missao3, #missao5 { grid-row: 2 / 6; }
+#missao2, #missao4, #missao6 { grid-row: 6 / 10; }
+#missao1, #missao2 { grid-column: 2 / 4; }
+#missao3, #missao4 { grid-column: 4 / 6; }
+#missao5, #missao6 { grid-column: 6 / 8; }
+
+#detalhes-missoes {
+    grid-column: 9 / 13;
+    grid-row: 2 / 10;
+    height: 100%;
+    width: 100%;
+    background-color: brown;
+    border-radius: 8px;
+    overflow-y: auto;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#detalhes-missoes p {
+    color: rgb(234, 241, 239);
+    font-size: 15px;
+    margin-left: 25px;
+}
+
+#Quest-details {
+    background-color: rgb(110, 20, 20);
+    height: 12%;
+    width: 100%;
+}
+
+#Quest-details h2 {
+    justify-self: center; 
+    align-self: center;
+}
+

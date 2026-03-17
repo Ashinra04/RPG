@@ -1,0 +1,52 @@
+<div id="tela-inventario" class="tela oculto">
+    <div id="Personagem" class="inventario-Container">
+        <h3 class="titulo-inventario2">Nome do player</h3>
+        <div id="info-player"></div>
+        <div class="personagem-preview">
+            <img id="sprite-preview" src="/imagens/Sprites/knight_front.png" alt="Preview Classe">
+        </div>
+    </div>
+
+    <div id="Caixa-Sup-Esq" class="inventario-Container">
+        <h3 class="titulo-inventario">Skills</h3>
+    </div>
+    <div id="Caixa-Sup-Dir" class="inventario-Container">
+        <h3 class="titulo-inventario">Gears</h3>
+        <div class="gears-grid">
+            <div class="Bloco-TM" id="amulet">amulet</div>
+            <div class="Bloco-TM" id="helmet">helmet</div>
+            <div class="Bloco-TM" id="ring">ring</div>
+
+            <div class="Bloco-TM" id="weapon">weapon</div>
+            <div class="Bloco-TM" id="armor">armor</div>
+            <div class="Bloco-TM" id="shield">shield</div>
+
+            <div id="S1"></div>
+            <div class="Bloco-TM" id="paints">paints</div>
+            <div class="Bloco-TM" id="boots">boots</div>
+        </div>
+    </div>
+    <div id="Caixa-Inf-Esq" class="inventario-Container">
+        <h3 class="titulo-inventario">Traços</h3>
+        <div id="grid-traços">
+            <div id="tr-1" class="Bloco-TM">1</div> <div id="tr-2" class="Bloco-TM">2</div>
+            <div id="tr-3" class="Bloco-TM">3</div><div id="tr-4" class="Bloco-TM">4</div>
+            <div id="tr-5" class="Bloco-TM">5</div><div id="tr-6" class="Bloco-TM">6</div>
+            <div id="tr-7" class="Bloco-TM">7</div><div id="tr-8" class="Bloco-TM">8</div>
+        </div>
+    </div>
+    <div id="Caixa-Inf-Dir" class="inventario-Container">
+        <h3 class="titulo-inventario">Maldições</h3>
+        <div id="grid-maldições">
+            <div id="md-1" class="Bloco-TM">1</div> <div id="md-2" class="Bloco-TM">2</div>
+            <div id="md-3" class="Bloco-TM">3</div><div id="md-4" class="Bloco-TM">4</div>
+            <div id="md-5" class="Bloco-TM">5</div><div id="md-6" class="Bloco-TM">6</div>
+            <div id="md-7" class="Bloco-TM">7</div><div id="md-8" class="Bloco-TM">8</div>
+        </div>
+    </div>
+    <div id="Menu-Botoes">
+        <button id="btn-criaçao" class="btn-lateral" onclick="mudarTela('tela-gears')">Gears</button>
+        <button id="btn-criaçao" class="btn-lateral" onclick="mudarTela('tela-skills-buffs-debuffs')">Skills</button>
+        <button id="btn-criaçao" class="btn-lateral" onclick="mudarTela('tela-jornada')">Voltar</button>
+    </div>
+</div>

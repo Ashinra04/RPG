@@ -1,0 +1,210 @@
+/* Tela de Batalha (Raid) CSS */
+
+#tela-batalha {
+    width: 90%;
+    height: 85%;
+    justify-content: center;
+    background-image: url('/imagens/monstros/fundo floresta.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 2px solid #d1b87a;
+}
+
+#batalha-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 270px;
+}
+
+.inimigo {
+    width: 80px;
+    height: 80px;
+    border: 2px solid rgb(224, 228, 13);
+    background-color: #076917;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+}
+
+.inimigo::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+    pointer-events: none;
+}
+
+.inimigo:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #ff4444;
+    filter: brightness(1.2);
+}
+
+.inimigo img {
+    width: 70px;
+    height: 70px;
+}
+
+/* Tela de Combate CSS */
+
+#tela-combate {
+    width: 90%;
+    height: 90%;
+    background-image: url('/imagens/cenarios/FlorestaFundo.jpg');
+    background-size: cover;
+    background-position: center;
+    border: 2px solid #d1b87a;
+    box-sizing: border-box;
+    padding: 20px;
+    position: relative;
+    display: block;
+    gap: 10px;
+}
+
+.PlyrCbt {
+    width: 15%;
+    height: 25%;
+    position: absolute;
+}
+
+.PlyrCbt img {
+    width: 100%;
+    height: 100%;
+}
+
+#PlayerSprite { bottom: 15%; left: 30%;}
+#AliadoSprite { bottom: 12%; left: 20%;}
+#AliadoSprite2 { bottom: 9%; left: 36%;}
+
+.enemyCbt {
+    width: 15%;
+    height: 20%;
+    position: absolute;
+}
+
+.enemyCbt img {
+    width: 80%;
+    height: 80%;
+}
+
+#EnemySprite { top: 50%; right: 39%;}
+#EnemySprite2 { top: 45%; right: 45%;}
+#EnemySprite3 { top: 47%; right: 32%;}
+
+#player-Painel {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 10px;
+    position: absolute;
+    bottom: 5%;
+    left: 2%;
+}
+
+#enemy-Painel {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    position: absolute;
+    top: 5%;
+    right: -10%;
+    gap: 10px;
+}
+
+#bar-açoes {
+    position: absolute;
+    width: 30%;
+    height: 25%;
+    right: 2%;
+    bottom: 5%;
+    border: 3px solid #35332e;
+    background-color: #e5e9da;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 5px;
+    box-sizing: border-box;
+    padding: 5px 5px 5px 40px;
+}
+
+.btn-açoes {
+    width: 80%;
+    height: 80%;
+    border: 3px solid #35332e;
+    background-color: #347fd4;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+#bar-açoes button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #4e24e4;
+    filter: brightness(1.2);
+}
+
+.combatebar-container {
+    width: 150px; 
+    height: 70px;
+}
+
+.combateEnemy-container {
+    width: 150px; 
+    height: 70px;
+}
+
+.combatebar-container, .combateEnemy-container {
+    border: 3px solid #2a1de0;
+    background-color: #f6f8ef;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+
+#Py, .PE {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2px;
+}
+
+#Py img {
+    width: 20%;
+    height: 20%;
+    border: 3px solid #2a1de0;
+    background-color: #f6f8ef;
+}
+
+.PE img {
+    width: 20%;
+    height: 20%;
+    border: 3px solid #2a1de0;
+    background-color: #f6f8ef;
+}
+
+.Jogador {
+    height: 50%;
+    display: flex;
+    align-items: center;       
+    justify-content: flex-start;
+    padding-left: 5px; 
+}
+
+.esconder {
+    display: none;
+}
+.mostrar {
+    display: flex;
+}

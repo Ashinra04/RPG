@@ -1,0 +1,99 @@
+<div id="tela-batalha" class="tela oculto">
+    <div id="batalha-container">
+        <div id="inimigo1" class="inimigo" onclick="entrarEmBatalha('Slime'); mudarTela('tela-combate')">
+            <img src="/imagens/monstros/slime.png" alt="Slime">
+        </div>
+        <div id="inimigo2" class="inimigo" onclick="entrarEmBatalha('Aranha'); mudarTela('tela-combate')">
+            <img src="/imagens/monstros/spider.png" alt="Aranha">
+        </div>
+        <div id="inimigo3" class="inimigo" onclick="entrarEmBatalha('Goblin'); mudarTela('tela-combate')">
+            <img src="/imagens/monstros/goblin.png" alt="Goblin">
+        </div>
+    </div>
+</div>
+
+<div id="tela-combate" class="tela oculto">
+
+    <div id="PlayerSprite" class="PlyrCbt">
+        <img src="/imagens/Sprites/knight_batle.png" alt="">
+    </div>
+
+    <div id="AliadoSprite" class="PlyrCbt esconder">
+        <img src="/imagens/Sprites/archer_batle.png" alt="">
+    </div>
+    <div id="AliadoSprite2" class="PlyrCbt esconder">
+        <img src="/imagens/Sprites/wizard_batle.png" alt="">
+    </div>
+
+    <div id="EnemySprite2" class="enemyCbt esconder">
+        <img id="Preview-Inimigo4" src="/imagens/monstros/goblinE.png" alt="">
+    </div>
+    <div id="EnemySprite3" class="enemyCbt esconder">
+        <img id="Preview-Inimigo5" src="/imagens/monstros/goblinE.png" alt="">
+    </div>
+    <div id="EnemySprite" class="enemyCbt">
+        <img id="Preview-Inimigo6" src="/imagens/monstros/goblinE.png" alt="">
+    </div>
+
+    <div id="player-Painel" class="grid-combate">
+        <div id="Py">
+            <img src="/imagens/Sprites/cavaleiro_retrato.png" alt="">
+            <div id="divPlayer" class="combatebar-container">
+                <div id="bar-nome-player" class="Jogador"></div>
+                <div id="bar-life-player" class="Jogador"></div>
+                <div id="bar-mana-player" class="Jogador"></div>
+            </div>
+        </div>
+        <!--
+        <div id="Py">
+            <img src="/imagens/Sprites/archer_retrato.png" alt="">
+            <div id="divAliado1" class="combatebar-container">
+                <div id="bar-life-aliado1"></div>
+                <div id="bar-mana-aliado1"></div>
+            </div>
+        </div>
+        <div id="Py">
+            <img src="/imagens/Sprites/cavaleiro_retrato.png" alt="">
+            <div id="divAliado2" class="combatebar-container">
+                <div id="bar-life-aliado2"></div>
+                <div id="bar-mana-aliado2"></div>
+            </div>
+        </div> -->
+    </div>
+
+    <div id="enemy-Painel">
+        <div id="Pe1" class="PE">
+            <div id="divInimigo1" class="combateEnemy-container">
+                <div id="NomeEnemy1"></div>
+                <div id="LevelEnemy1"></div>
+                <div id="HPEnemy1"></div>
+            </div>
+            <img id="Preview-Inimigo1" src="/imagens/monstros/goblinE.png" alt="PreviewInimigo">
+        </div>
+
+        <div id="Pe2" class="PE esconder">
+            <div id="divInimigo2" class="combateEnemy-container">
+                <div id="NomeEnemy2"></div>
+                <div id="LevelEnemy2"></div>
+                <div id="HPEnemy2"></div>
+            </div>
+            <img id="Preview-Inimigo2" src="/imagens/monstros/goblinE.png" alt="PreviewInimigo">
+        </div>
+
+        <div id="Pe3" class="PE esconder">
+            <div id="divInimigo3" class="combateEnemy-container">
+                <div id="NomeEnemy3"></div>
+                <div id="LevelEnemy3"></div>
+                <div id="HPEnemy3"></div>
+            </div>
+            <img id="Preview-Inimigo3" src="/imagens/monstros/goblinE.png" alt="PreviewInimigo">
+        </div>
+    </div>
+    
+    <div id="bar-açoes" class="açaobar-container">
+        <button class="btn-açoes" id="btn-atacar" onclick="atacar()">Atacar</button>
+        <button class="btn-açoes" id="btn-magia" onclick="magia()">Magia</button>
+        <button class="btn-açoes" id="btn-item" onclick="item()">Item</button>
+        <button class="btn-açoes" id="btn-fugir" onclick="fugir()">Fugir</button>
+    </div>
+</div>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>rpg</title>
+  <style>
+    body {
+      background: radial-gradient(circle at center, #2e1e36 0%, #110e1a 100%);
+      margin: 0;
+      color: #e2d7e0;
+    }
+
+    .oculto {
+      display: none !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="menu-principal tela" id="menu-principal">
+    <!-- <button onclick="mudarTela('tela-criacao')">Start</button> -->
+     <button onclick="mudarTela('tela-batalha')" class="button-style">Start</button>
+  </div>
+
+  <div id="tela-criacao" class="tela oculto">
+    <h2>Criação de Personagem</h2>
+
+    <div class="container-criacao">
+      <div class="criacao-inputs">
+        <input type="text" id="input-nome" placeholder="Digite seu nome">
+
+        <select id="select-classe" onchange="atualizarSpritePreview()">
+          <option value="guerreiro">Guerreiro</option>
+          <option value="mago">Mago</option>
+          <option value="arqueiro">Arqueira</option>
+        </select>
+
+        <div class="botoes-acao">
+          <button onclick="prosseguirParaTracos()" id="btn-criaçao" class="button-style">Prosseguir</button>
+          <button onclick="mudarTela('tela-jornada')" id="btn-criaçao" class="button-style">Direto</button>
+        </div>
+      </div>
+
+      <div class="criacao-preview">
+        <div class="moldura-sprite">
+          <img id="sprite-preview" src="/imagens/Sprites/knight_front.png" alt="Preview Classe">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="tela-tracos-mmaldiçoes" class="tela oculto tela-larga">
+    <div class="tracos-header">
+      <h2>TRAÇOS E MALDIÇÕES</h2>
+      <p>escolha seus traços e maldições</p>
+    </div>
+
+    <div class="tracos-body">
+      <!-- Coluna Esquerda: Verde -->
+      <div class="tracos-coluna">
+        <div class="tracos-painel painel-verde-novo">
+          <div id="lista-buffs-disponiveis" class="grid-itens-novo"></div>
+        </div>
+        <div id="slot-buffs" class="slots-horizontais"></div>
+      </div>
+
+      <!-- Coluna Direita: Vermelha -->
+      <div class="tracos-coluna">
+        <div class="tracos-painel painel-vermelho-novo">
+          <div id="lista-maldicoes-disponiveis" class="grid-itens-novo"></div>
+        </div>
+        <div id="slot-debuffs" class="slots-horizontais"></div>
+      </div>
+    </div>
+
+    <div class="tracos-footer">
+      <div class="saldo-box">
+        <span class="saldo-label">SALDO</span>
+        <div id="ponto-balanco" class="saldo-value"></div>
+      </div>
+      <button id="btn-confirmar" class="btn-concluir button-style" onclick="salvarPersonagem()" disabled>CONCLUIR</button>
+    </div>
+  </div>
+
+  <div id="tela-jogo" class="tela oculto">
+    <h2>O Mundo de Arton</h2>
+    <p id="dialogo">A aventura começa!</p>
+    <button class="button-style" onclick="mudarTela('tela-jornada')" class="button-style">Começar a Jornada</button>
+  </div>
+
+  <div id="tela-jornada" class="tela oculto">
+    <div class="menu-btns">
+      <button id="btn-inventario" onclick="mudarTela('tela-inventario')" class="inventario button-style"><img
+          src="/imagens/Sprites/backpack.png" alt="Botão Mapa"></button>
+      <button id="btn-mapa" onclick="mudarTela('tela-mapa')" class="mapa button-style"><img src="/imagens/Sprites/map.png"
+          alt="Botão Mapa"></button>
+    </div>
+    <div>
+      <div class="divBtnBatalha"><button id="btn-batalha" onclick="mudarTela('tela-batalha')"
+          class="batalha">Aventura</button></div>
+      <div class="predio-clicavel taverna" onclick="mudarTela('tela-taverna')">
+        <span class="tooltip">Taverna</span>
+      </div>
+
+      <div class="predio-clicavel loja" onclick="mudarTela('tela-loja')">
+        <span class="tooltip">Shop</span>
+      </div>
+
+      <div class="predio-clicavel forja" onclick="mudarTela('tela-forja')">
+        <span class="tooltip">Forja</span>
+      </div>
+
+      <div class="predio-clicavel guild" onclick="mudarTela('tela-missao')">
+        <span class="tooltip">Missoes</span>
+      </div>
+
+      <div class="predio-clicavel templo" onclick="mudarTela('tela-forja')">
+        <span class="tooltip">templo</span>
+      </div>
+      <div class="predio-clicavel library" onclick="mudarTela('tela-biblioteca')">
+        <span class="tooltip">biblioteca</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="container-batalha"></div>
+  <div id="container-loja"></div>
+  <div id="container-inventario"></div>
+  <div id="container-gears"></div>
+  <div id="container-skills"></div>
+
+  <div id="container-missao"></div>
+  <div id="container-mapa"></div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>

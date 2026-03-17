@@ -1,0 +1,225 @@
+#tela-gears {
+    width: 95%;
+    height: 90%;
+    justify-content: center;
+    border: 2px solid #d1b87a;
+    gap: 15px;
+    padding: 20px;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+}
+
+/* Base style for grid containers within gears */
+#gears-container, #status-container, #buttons-container, #slots-container, #category-title, #category-container {
+    width: 100%;
+    justify-content: center;
+}
+
+#gears-container, #status-container, #buttons-container {
+    height: 95%;
+    grid-row: 1 / 5;
+}
+
+#gears-container {
+    grid-column: 1 / 4;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: repeat(4, 1fr);
+    padding: 5px;
+    box-sizing: border-box;
+    justify-items: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+#status-container { grid-column: 4 / 7; }
+#buttons-container { grid-column: 7 / 8; }
+#slots-container { grid-column: 1 / 4; grid-row: 5 / 9;}
+
+/* Gear slots positions */
+#slot-cabeca, #slot-armadura, #slot-arma, #slot-calca { grid-column: 1; }
+#slot-colar, #slot-anel, #slot-escudo, #slot-botas { grid-column: 3; }
+
+#slot-cabeca, #slot-colar { grid-row: 1; }
+#slot-armadura, #slot-anel { grid-row: 2; }
+#slot-arma, #slot-escudo { grid-row: 3; }
+#slot-calca, #slot-botas { grid-row: 4; }
+
+.slots-gear, .slotIn {
+    background-color: rgba(71, 43, 87, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slots-gear {
+    max-width: 60px;
+    max-height: 42px;
+    aspect-ratio: 1 / 1;
+}
+
+#slot-player {
+    grid-column: 2 / 3;
+    grid-row: 1 / 5;
+    background-image: url('/imagens/Sprites/knight_front.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#slot-player img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+#slots-container {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 10px;
+    padding:15px;
+    box-sizing: border-box;
+}
+
+#category-title {
+    grid-column: 1 / 7;
+    grid-row: 1 / 1;
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+.slotIn {
+    max-width: 60px;
+    max-height: 50px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+.slotIn:hover, .slots-gear:hover, .categoryTitle:hover, .categoryGerenciamento:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(125, 84, 146, 0.6);
+    text-shadow: 0 0 8px rgba(255, 220, 168, 0.8);
+}
+
+.categoryGerenciamento:hover {
+    background: linear-gradient(to bottom, #4c5fce, #6eb4e2);
+}
+
+.slotIn:hover, .categoryTitle:hover, .slots-gear:hover {
+    background: linear-gradient(to bottom, #8a65a1, #563668);
+}
+
+#slot1, #slot2, #slot3, #slot4, #slot5, #slot6 { grid-row: 2; }
+#slot7, #slot8, #slot9, #slot10, #slot11, #slot12 { grid-row: 3; }
+#slot13, #slot14, #slot15, #slot16, #slot17, #slot18 { grid-row: 4; }
+
+#slot1, #slot7, #slot13 { grid-column: 1; }
+#slot2, #slot8, #slot14 { grid-column: 2; }
+#slot3, #slot9, #slot15 { grid-column: 3; }
+#slot4, #slot10, #slot16 { grid-column: 4; }
+#slot5, #slot11, #slot17 { grid-column: 5; }
+#slot6, #slot12, #slot18 { grid-column: 6; }
+#slotCategoria { 
+    grid-column: 7 / 9; grid-row: 1 / 5; 
+    background-color: #563668;
+    width: 100%;
+    height: 100%;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+#category-container {
+    grid-column: 4 / 5;
+    grid-row: 5 / 9;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+#status-title, #category-container, .categoryGerenciamento, .categoryTitle, #ItemnsDetails, #ItemnsDetails-title { 
+    justify-content: center;
+    align-items: center;
+} 
+
+.categoryTitle {
+    background-color: rgba(71, 43, 87, 0.5);
+}
+
+.categoryGerenciamento {
+    background-color: rgba(70, 123, 192, 0.795);
+}
+
+.categoryGerenciamento, .categoryTitle {
+    height: 18%;
+    display: flex;
+}
+
+#category-consumables {
+    font-size: 13px;
+}
+
+#ItemnsDetails {
+    grid-column: 5 / 8;
+    grid-row: 5 / 9;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+#ItemnsDetails, #category-container, #slot-player, #slots-container {
+    height: 100%;
+}
+
+#ItemnsDetails-title, #status-title, #status-content, #ItemnsDetails-content, #category-title, .categoryTitle, .categoryGerenciamento, .slotIn, #slot-player, .slots-gear {
+    width: 100%;
+}
+
+.slots-gear, .slotIn,.categoryTitle, .categoryGerenciamento, #ItemnsDetails-title, #ItemnsDetails-content, #ItemnsDetails, #gears-container, #status-container, #buttons-container, #slots-container, #category-title, #category-container, #status-title {
+    border: 2px solid #d1b87a;
+}
+
+#ItemnsDetails-title {
+    width: 100%;
+    height: 18%;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+}
+
+#ItemnsDetails-content {
+    height: 82%;
+    background-color: rgba(71, 43, 87, 0.5);
+}
+
+#status-container {
+    overflow: hidden;
+}
+
+#status-title {
+    display: flex;
+    height: 15%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+#status-content {
+    height: 100%;
+    background-color: rgba(71, 43, 87, 0.5);
+}
+
+#status-content, #ItemnsDetails-content {
+    display: flex;
+    border-radius: 8px;
+    overflow-y: auto;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 10px;
+    box-sizing: border-box;
+}

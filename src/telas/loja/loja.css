@@ -1,0 +1,131 @@
+/* Tela de Loja CSS */
+#tela-loja {
+    width: 90%;
+    height: 90%;
+    padding: 1px 17px;
+    display: grid;
+    grid-template-columns: repeat(11, 1fr);
+    grid-template-rows: repeat(9, 1fr);
+}
+
+.cabecalho-loja {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 3px solid #d1b87a;
+    border-radius: 6px;
+    width: 100%;
+    height: 60%;
+    grid-column: 1 / 12;
+    grid-row: 1 / 2;
+}
+
+.cabecalho-loja h2 {
+    margin-top: 15px;
+}
+
+#container-npc {
+    display: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    grid-column: 1 / 4;
+    grid-row: 2 / 7;
+    margin-bottom: 25px;
+}
+
+.nome-div {
+    color: #ffdca8;
+    background-color: rgba(236, 234, 234, 0.493);
+    border: 3px solid;
+    height: 12%;
+}
+
+.nome-nav {
+    color: #ffdca8;
+    background-color: rgba(236, 234, 234, 0.493);
+    border: 3px solid;
+    height: 12%;
+}
+
+.h2-refino {
+    margin-top: 5px;
+    font-size: 20px;
+}
+
+#box-dialago {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    grid-column: 1 / 4;
+    grid-row: 7 / 10;
+    margin-bottom: 25px;
+}
+
+#box-botoes {
+    display: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    grid-column: 9 / 12;
+    grid-row: 7 / 10;
+    margin-bottom: 55px;
+}
+
+#box-botoes button {
+    font-size: 20px;
+    height: 50px;
+    width: 80%;
+    background: rgba(98, 32, 124, 0.247);
+}
+
+#box-detalhes {
+    display: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    grid-column: 9 / 12;
+    grid-row: 2 / 7;
+    margin-bottom: 20px;
+}
+
+#box-items {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    grid-column: 4 / 9;
+    grid-row: 2 / 6;
+    margin-bottom: 25px;
+}
+
+#box-inventario {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    grid-column: 4 / 9;
+    grid-row: 6 / 10;
+    margin-bottom: 25px;
+}
+
+.box {
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 3px solid #d1b87a;
+    border-radius: 6px;
+}
+
+#npc-mercador {
+    background-image: url('/imagens/Sprites/mercador2.png');
+    width: auto;
+    height: 240px;
+    background-size: cover;
+}

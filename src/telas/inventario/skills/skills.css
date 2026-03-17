@@ -1,0 +1,109 @@
+/* ==========================================================================
+   TELA DE SKILLS, BUFFS E DEBUFFS (PERFIL)
+   ========================================================================== */
+#tela-skills-buffs-debuffs {
+    height: 95%;
+    width: 95%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+}
+
+/* --------------------------------------------------------------------------
+   TOPO: SKILLS, BUFFS E DEBUFFS
+   -------------------------------------------------------------------------- */
+#top-SBD {
+    grid-column: 1 / 4;
+    grid-row: 1 / 1;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    border: 2px solid #d1b87a;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+#top-SBD h1 {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    margin-left: 100px;
+}
+
+/* Formatação compartilhada dos títulos das áreas de Skills/Buffs */
+#Titulo-Skills h1,
+#Titulo-Detalhes h1,
+#Titulo-Traços-e-Maldições h1,
+#top-SBD h1 {
+    font-size: 30px;
+    font-family: 'Metamorphous', cursive;
+    color: #d1b87a;
+    text-shadow: 0 0 10px rgba(209, 184, 122, 0.5);
+}
+
+/* --------------------------------------------------------------------------
+   PAINÉIS: SKILLS, INFO, E B/D COMPARTILHADO
+   -------------------------------------------------------------------------- */
+#painel-skills,
+#painel-info,
+#painel-buffs-debuffs {
+    height: 100%;
+    width: 100%;
+    background-color: #472b57;
+    grid-row: 2 / 6;
+    border: 2px solid #d1b87a;
+}
+
+#painel-skills { grid-column: 1 / 2; }
+#painel-info { grid-column: 2 / 3; }
+
+#painel-buffs-debuffs {
+    grid-column: 3 / 4;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Títulos das caixas internas */
+#Titulo-Skills,
+#Titulo-Detalhes,
+#Titulo-Traços-e-Maldições {
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 2px solid #d1b87a;
+}
+
+/* --------------------------------------------------------------------------
+   ÁREAS DE TRAÇOS E MALDIÇÕES (PBuffs / PDebuffs)
+   -------------------------------------------------------------------------- */
+#Pbuffs,
+#Pdebuffs {
+    border: 2px solid #d1b87a;
+    width: 100%;
+    flex: 1;
+    gap: 10px;
+    padding: 15px;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+
+#Pbuffs { background-color: rgba(19, 189, 138, 0.4); }
+#Pdebuffs { background-color: rgba(179, 20, 20, 0.788); }
+
+/* Itens Individuais (TM - Traços e Maldições) */
+.TM {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(24, 22, 22, 0.788);
+    border: 2px solid #f3f2f1;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+.TM:hover {
+    background: linear-gradient(to bottom, #8a65a1, #563668);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(125, 84, 146, 0.6);
+    text-shadow: 0 0 8px rgba(255, 220, 168, 0.8);
+}
