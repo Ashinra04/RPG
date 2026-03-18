@@ -2,13 +2,35 @@
 
 console.log("Tela de batalha carregada");
 
+// ==========================================
+// CONFIGURAÇÕES E DADOS (DATABASE)
+// ==========================================
 const monstros = {
     "Slime": { nome: "Slime", vida: 18, dano: 5, XP: 4, ouro: 5, sprite: '/imagens/monstros/slime.png' },
     "Aranha": { nome: "Aranha", vida: 30, dano: 8, XP: 12, ouro: 10, sprite: '/imagens/monstros/spider.png' },
     "Goblin": { nome: "Goblin", vida: 24, dano: 4, XP: 20, ouro: 15, sprite: '/imagens/monstros/goblinE.png' },
-}
+};
 
-const player = {
+const cenarios = {
+    "Floresta": { nivel: 1 },
+    "Cavernas": { nivel: 5 },
+    "Deserto": { nivel: 10 },
+};
+
+// ==========================================
+// ESTADO DO JOGO (STATE)
+// ==========================================
+let monstrosAtual = null;
+let QuantidadeMonstro = 1;
+let numberAliados = null;
+let turno = "plr"; // "plr" ou "mon"
+
+// Variáveis de HP Global para os inimigos (atualizadas por nvlMonsters)
+let nvlInimigo1 = 1, nvlInimigo2 = 1, nvlInimigo3 = 1;
+let inimigoHP1 = 0, inimigoHP2 = 0, inimigoHP3 = 0;
+
+// O player vem do main.js ou é definido aqui para teste
+const player = window.player || {
     nome: "Player",
     vida: 32,
     vidaMax: 32,
@@ -20,272 +42,195 @@ const player = {
     ouro: 0
 };
 
-let monstrosAtual = null;
-let QuantidadeMonstro = null;
-let numberAliados = null;
-let turno = "plr";
-
-const cenarios = {
-    "Floresta": { nivel: 1, },
-    "Cavernas": { nivel: 5, },
-    "Deserto": { nivel: 10, },
-}
-
-let nvlInimigo1 = null;
-let nvlInimigo2 = null;
-let nvlInimigo3 = null;
+// ==========================================
+// LÓGICA DE GERAÇÃO (LOGIC)
+// ==========================================
 
 window.nvlMonsters = function () {
-
-    if (cenario === "Floresta") {
+    // Pega o cenário atual (pode vir de uma variável global de mapa no futuro)
+    const cenarioAtual = window.cenario || "Floresta";
+    
+    if (cenarioAtual === "Floresta") {
         nvlInimigo1 = Math.floor(Math.random() * 4) + 1;
         nvlInimigo2 = Math.floor(Math.random() * 4) + 1;
         nvlInimigo3 = Math.floor(Math.random() * 4) + 1;
-    }
-    if (cenario === "Cavernas") {
+    } else if (cenarioAtual === "Cavernas") {
         nvlInimigo1 = Math.floor(Math.random() * 5) + 5;
         nvlInimigo2 = Math.floor(Math.random() * 5) + 5;
         nvlInimigo3 = Math.floor(Math.random() * 5) + 5;
     }
 
-    let inimigoHP1 = monstrosAtual.vida + (20 * (nvlInimigo1 - 1));
-    let inimigoHP2 = monstrosAtual.vida + (20 * (nvlInimigo2 - 1));
-    let inimigoHP3 = monstrosAtual.vida + (20 * (nvlInimigo3 - 1));
-}
+    if (monstrosAtual) {
+        inimigoHP1 = monstrosAtual.vidaBase + (20 * (nvlInimigo1 - 1));
+        inimigoHP2 = monstrosAtual.vidaBase + (20 * (nvlInimigo2 - 1));
+        inimigoHP3 = monstrosAtual.vidaBase + (20 * (nvlInimigo3 - 1));
+    }
+};
 
 window.NumberMonstros = function () {
     QuantidadeMonstro = Math.floor(Math.random() * 3) + 1;
-    alert("Número de monstros gerados: " + QuantidadeMonstro);
+    // alert("Número de monstros gerados: " + QuantidadeMonstro);
+};
+
+// ==========================================
+// INTERFACE (UI UPDATES)
+// ==========================================
+
+window.atualizarSpriteMonstro = function () {
+    if (!monstrosAtual) return;
+    const imagemCerta = monstros[monstrosAtual.nome].sprite;
+
+    for (let i = 1; i <= 6; i++) {
+        const img = document.getElementById("Preview-Inimigo" + i);
+        if (img) img.src = imagemCerta;
+    }
 };
 
 window.trocarClassDasDivs = function () {
-
-    if (QuantidadeMonstro === 1) {
+    // Esconde todos primeiro
+    for (let i = 2; i <= 3; i++) {
+        document.getElementById("Pe" + i)?.classList.add("esconder");
+        document.getElementById("EnemySprite" + i)?.classList.add("esconder");
     }
 
-    if (QuantidadeMonstro === 2) {
-        const Enemy1 = document.getElementById("Pe2");
-        const Enemy1Sprite = document.getElementById("EnemySprite2");
-        Enemy1.classList.remove("esconder");
-        Enemy1.classList.add("mostrar");
-        Enemy1Sprite.classList.remove("esconder");
-        Enemy1Sprite.classList.add("mostrar");
+    // Mostra conforme a quantidade
+    if (QuantidadeMonstro >= 2) {
+        document.getElementById("Pe2")?.classList.remove("esconder");
+        document.getElementById("EnemySprite2")?.classList.remove("esconder");
     }
-
     if (QuantidadeMonstro === 3) {
-        const Enemy1 = document.getElementById("Pe2");
-        const Enemy2 = document.getElementById("Pe3");
-        const Enemy1Sprite = document.getElementById("EnemySprite2");
-        const Enemy2Sprite = document.getElementById("EnemySprite3");
-        Enemy1.classList.remove("esconder");
-        Enemy1.classList.add("mostrar");
-        Enemy2.classList.remove("esconder");
-        Enemy2.classList.add("mostrar");
-        Enemy1Sprite.classList.remove("esconder");
-        Enemy1Sprite.classList.add("mostrar");
-        Enemy2Sprite.classList.remove("esconder");
-        Enemy2Sprite.classList.add("mostrar");
+        document.getElementById("Pe3")?.classList.remove("esconder");
+        document.getElementById("EnemySprite3")?.classList.remove("esconder");
     }
 };
 
 window.VerificarAliados = function () {
-
-    if (numberAliados === null) {
-    }
-
+    // Lógica similar para aliados se houver no futuro
     if (numberAliados === 1) {
-        const Aliado1 = document.getElementById("AliadoSprite");
-        const Aliado1Painel = document.getElementById("Py2");
-        Aliado1.classList.remove("esconder");
-        Aliado1.classList.add("mostrar");
-        Aliado1Painel.classList.remove("esconder");
-        Aliado1Painel.classList.add("mostrar");
-    }
-
-    if (numberAliados === 2) {
-        const Aliado1 = document.getElementById("AliadoSprite");
-        const Aliado2 = document.getElementById("AliadoSprite2");
-        Aliado1.classList.remove("esconder");
-        Aliado1.classList.add("mostrar");
-        Aliado2.classList.remove("esconder");
-        Aliado2.classList.add("mostrar");
+        document.getElementById("AliadoSprite")?.classList.remove("esconder");
+        document.getElementById("Py2")?.classList.remove("esconder");
+    } else if (numberAliados === 2) {
+        document.getElementById("AliadoSprite")?.classList.remove("esconder");
+        document.getElementById("AliadoSprite2")?.classList.remove("esconder");
+        document.getElementById("Py2")?.classList.remove("esconder");
+        document.getElementById("Py3")?.classList.remove("esconder");
     }
 };
 
-window.atualizarSpriteMonstro = function () {
-    const imagemCerta = monstros[monstrosAtual.nome].sprite;
+function atualizarInterfaceBatalha() {
+    // Atualiza Player
+    const divPlayerNome = document.getElementById('bar-nome-player');
+    const divPlayerHP = document.getElementById("bar-life-player");
+    const divPlayerMana = document.getElementById("bar-mana-player");
 
-    const img1 = document.getElementById("Preview-Inimigo1");
-    const img2 = document.getElementById("Preview-Inimigo2");
-    const img3 = document.getElementById("Preview-Inimigo3");
-    const img4 = document.getElementById("Preview-Inimigo4");
-    const img5 = document.getElementById("Preview-Inimigo5");
-    const img6 = document.getElementById("Preview-Inimigo6");
+    if (divPlayerNome) {
+        divPlayerNome.innerHTML = `
+            <span class="u-nome">${player.nome}</span>
+            <span class="u-label">Nível:</span>
+            <span class="u-valor">${player.level}</span>
+        `;
+    }
 
-    if (img1) img1.src = imagemCerta;
-    if (img2) img2.src = imagemCerta;
-    if (img3) img3.src = imagemCerta;
-    if (img4) img4.src = imagemCerta;
-    if (img5) img5.src = imagemCerta;
-    if (img6) img6.src = imagemCerta;
-};
+    if (divPlayerHP) {
+        divPlayerHP.innerHTML = `
+            <span class="u-label">HP:</span>
+            <span class="u-valor-hp">${player.vida}/${player.vidaMax}</span>
+        `;
+    }
 
-window.entrarEmBatalha = function (nomeDoMonstro) {
-    const monstro = monstros[nomeDoMonstro];
+    if (divPlayerMana) {
+        divPlayerMana.innerHTML = `
+            <span class="u-label">MANA:</span>
+            <span class="u-valor-mana">${player.mana}/${player.mana || 15}</span>
+        `;
+    }
 
-    monstrosAtual = {
-        nome: nomeDoMonstro,
-        vida: monstro.vida,
-        vidaMax: monstro.vida,
-        ataque: monstro.dano,
-        nivel: monstro.nivel
-    };
-
-    console.log("Iniciando batalha contra: " + monstrosAtual.nome);
-
-    atualizarSpriteMonstro();
-    NumberMonstros();
-    trocarClassDasDivs();
-    VerificarAliados();
-
-    // ==========================================
-    // O LOOP MÁGICO (Reduzindo 60 linhas para 15)
-    // ==========================================
+    // Atualiza Inimigos
+    if (!monstrosAtual) return;
 
     for (let i = 1; i <= 3; i++) {
-
         const divEnemyNome = document.getElementById("NomeEnemy" + i);
         const divEnemyLevel = document.getElementById("LevelEnemy" + i);
         const divEnemyHP = document.getElementById("HPEnemy" + i);
 
-        if (divEnemyNome) {
-            divEnemyNome.innerHTML = `
-                <span style="color: #53dd5fff; font-size: 16px; font-weight: bold; -webkit-text-stroke: 1px black;">
-                    ${monstrosAtual.nome}
-                </span>`;
-        }
+        const nvl = (i === 1) ? nvlInimigo1 : (i === 2 ? nvlInimigo2 : nvlInimigo3);
+        const hpAtual = monstrosAtual["hp" + i];
+        const hpMax = monstrosAtual["hpMax" + i]; // Agora usa o valor salvo no início
 
-        if (divEnemyLevel) {
-            divEnemyLevel.innerHTML = `
-                <span style="color: #0f0f0fff; font-size: 16px; font-weight: bold; margin-right: 8px;">
-                    Nível: 
-                </span>
-                <span style="color: #53dd5fff; font-size: 16px; font-weight: bold; -webkit-text-stroke: 1px black;">
-                    ${monstrosAtual.nivel}
-                </span>`;
-        }
-
+        if (divEnemyNome) divEnemyNome.innerHTML = `<span class="e-nome">${monstrosAtual.nome}</span>`;
+        if (divEnemyLevel) divEnemyLevel.innerHTML = `<span class="e-label">Nível:</span> <span class="e-valor">${nvl}</span>`;
         if (divEnemyHP) {
             divEnemyHP.innerHTML = `
-                <span style="color: #0f0f0fff; font-size: 16px; font-weight: bold; margin-right: 8px;">
-                    HP: 
-                </span>
-                <span style="color: #53dd5fff; font-size: 16px; font-weight: bold; -webkit-text-stroke: 1px black;">
-                    ${monstrosAtual.vida}/${monstrosAtual.vidaMax}
-                </span>`;
+                <span class="e-label">HP:</span> 
+                <span class="e-valor-hp">${hpAtual}/${hpMax}</span>
+            `;
         }
     }
+}
+
+// ==========================================
+// FUNÇÕES DE AÇÃO (ACTIONS)
+// ==========================================
+
+window.entrarEmBatalha = function (nomeDoMonstro) {
+    const monstroData = monstros[nomeDoMonstro];
+
+    // Reset de estado da batalha
+    monstrosAtual = {
+        nome: nomeDoMonstro,
+        vidaBase: monstroData.vida,
+        ataque: monstroData.dano,
+        XP: monstroData.XP,
+        ouro: monstroData.ouro
+    };
+
+    turno = "plr";
+    NumberMonstros();
+    nvlMonsters();
+
+    // Atribui HPs calculados ao objeto da batalha
+    monstrosAtual.hp1 = inimigoHP1;
+    monstrosAtual.hpMax1 = inimigoHP1;
+    monstrosAtual.hp2 = inimigoHP2;
+    monstrosAtual.hpMax2 = inimigoHP2;
+    monstrosAtual.hp3 = inimigoHP3;
+    monstrosAtual.hpMax3 = inimigoHP3;
+
+    console.log(`Batalha iniciada contra ${QuantidadeMonstro}x ${nomeDoMonstro}`);
+
+    // Atualiza Visual
+    atualizarSpriteMonstro();
+    trocarClassDasDivs();
+    VerificarAliados();
+    atualizarInterfaceBatalha();
 };
 
-document.addEventListener("DOMContentLoaded", () => {
-    const divPlayerNome = document.getElementById('bar-nome-player');
-    const divPlayerHP = document.getElementById("bar-life-player");
-    const divPlayermana = document.getElementById("bar-mana-player");
-
-    if (divPlayerHP) {
-        const player_batle = {
-            vida: player.vida,
-            vidaMax: player.vida,
-            ataque: player.ataque,
-            mana: player.mana,
-            manaMax: player.mana,
-            level: player.level
-        }
-
-        divPlayerNome.innerHTML = `
-         <span style="color: #313531ff; font-size: 16px; font-weight: bold; -webkit-text-stroke: 1px black;  margin-right: 8px;">
-            ${player.nome}
-        </span>
-        <span style="color: #0f0f0fff; font-size: 16px; font-weight: bold; margin-right: 8px;">
-            Nivel: 
-        </span>
-         <span style="color: #191b1aff; font-size: 16px; font-weight: bold; -webkit-text-stroke: 1px black;">
-            ${player.level}
-        </span>
-    `;
-
-        divPlayerHP.innerHTML = `
-        <span style="color: #0f0f0fff; font-size: 16px; font-weight: bold; margin-right: 8px;">
-            HP: 
-        </span>
-         <span style="color: #53dd5fff; font-size: 16px; font-weight: bold; -webkit-text-stroke: 1px black;">
-            ${player_batle.vida}/${player_batle.vidaMax}
-        </span>
-    `;
-        if (divPlayermana) {
-            divPlayermana.innerHTML = `
-            <span style="color: #0f0f0fff; font-size: 16px; font-weight: bold; margin-right: 8px;">
-                MANA:
-            </span>
-            <span style="color: #4da6ff; font-size: 16px; font-weight: bold; -webkit-text-stroke: 1px black;">
-                ${player_batle.mana}/${player_batle.manaMax}
-            </span>
-    `;
-        }
-    }
-});
-
-function atualizarTelaBatalha() {
-    const divEnemyHP = document.getElementById("HPEnemy1");
-
-    if (divEnemyHP && monstrosAtual) {
-        divEnemyHP.innerHTML = `
-        <span style="color: #0f0f0fff; font-size: 16px; font-weight: bold; margin-right: 8px;">
-            HP: 
-        </span>
-         <span style="color: #ff4c4c; font-size: 16px; font-weight: bold; -webkit-text-stroke: 1px black;">
-            ${monstrosAtual.vida}/${monstrosAtual.vidaMax}
-        </span>
-        `;
-    }
-}
-
-function atualizarTelaBatalhaMonstro() {
-    const divPlayerHP = document.getElementById("bar-life-player");
-    if (divPlayerHP) {
-        divPlayerHP.innerHTML = `
-        <span style="color: #0f0f0fff; font-size: 16px; font-weight: bold; margin-right: 8px;">
-            HP: 
-        </span>
-         <span style="color: #53dd5fff; font-size: 16px; font-weight: bold; -webkit-text-stroke: 1px black;">
-            ${player.vida}/${player.vidaMax}
-        </span>
-    `;
-    }
-    turno = "plr";
-}
-
 window.atacar = function () {
-    if (monstrosAtual === null) {
-        console.log("Não tem nenhum monstro aqui!");
-        return;
-    }
+    if (!monstrosAtual) return;
 
     if (turno === "plr") {
-        console.log("Você atacou o " + monstrosAtual.nome + " com " + player.ataque + " de dano!");
-        monstrosAtual.vida -= player.ataque;
+        // Por enquanto ataca o primeiro inimigo ativo
+        let alvo = 1;
+        console.log(`Você atacou o ${monstrosAtual.nome} ${alvo} com ${player.ataque} de dano!`);
+        
+        monstrosAtual["hp" + alvo] -= player.ataque;
 
-        if (monstrosAtual.vida <= 0) {
-            monstrosAtual.vida = 0;
+        if (monstrosAtual["hp" + alvo] <= 0) {
+            monstrosAtual["hp" + alvo] = 0;
             alert("Você derrotou o " + monstrosAtual.nome + "!");
-            // AQUI VOCÊ GANHA XP E FECHA A TELA DE BATALHA NO FUTURO
+            
+            // Ganho de recompensa
             player.xp += monstrosAtual.XP;
             player.ouro += monstrosAtual.ouro;
-            window.mudarTela('tela-batalha');
-            return;
+            
+            // Se derrotou o último/único monstro, volta
+            if (QuantidadeMonstro === 1 || alvo === QuantidadeMonstro) {
+                window.mudarTela('tela-batalha');
+                return;
+            }
         }
 
-        atualizarTelaBatalha();
+        atualizarInterfaceBatalha();
         turno = "mon";
 
         setTimeout(() => {
@@ -296,29 +241,33 @@ window.atacar = function () {
 
 window.monstroAtacar = function () {
     if (turno === "mon") {
-        console.log("O " + monstrosAtual.nome + " atacou e causou " + monstrosAtual.ataque + " de dano!");
+        console.log("O " + monstrosAtual.nome + " atacou!");
         player.vida -= monstrosAtual.ataque;
 
-        if (player.vida < 0) {
+        if (player.vida <= 0) {
             player.vida = 0;
             alert("VOCÊ MORREU!");
+            // Lógica de Game Over aqui
         }
 
-        atualizarTelaBatalhaMonstro();
+        atualizarInterfaceBatalha();
+        turno = "plr";
     }
 };
 
 window.fugir = function () {
     let chance = Math.floor(Math.random() * 5) + 1;
     if (chance <= 3) {
-        alert("Você fugiu do " + monstrosAtual.nome + "!");
+        alert("Você fugiu com sucesso!");
         window.mudarTela('tela-batalha');
     } else {
-        alert("Você não conseguiu fugir do " + monstrosAtual.nome + "!");
+        alert("Falha ao fugir!");
         turno = "mon";
-
-        setTimeout(() => {
-            monstroAtacar();
-        }, 1000);
+        setTimeout(monstroAtacar, 1000);
     }
 };
+
+// Inicialização
+document.addEventListener("DOMContentLoaded", () => {
+    atualizarInterfaceBatalha();
+});

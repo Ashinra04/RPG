@@ -173,14 +173,14 @@
     justify-content: left;
 }
 
-#Py, .PE {
+.Py, .PE {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 2px;
 }
 
-#Py img {
+.Py img {
     width: 20%;
     height: 20%;
     border: 3px solid #2a1de0;
@@ -208,3 +208,10 @@
 .mostrar {
     display: flex;
 }
+
+/* --- Novos Estilos de UI --- */
+.u-label, .e-label { color: #444; font-size: 14px; font-weight: bold; margin-right: 5px; }
+.u-nome, .e-nome { color: #2a1de0; font-weight: bold; font-size: 16px; }
+.u-valor-hp, .e-valor-hp { color: #d63031; font-weight: 700; }
+.u-valor-mana { color: #0984e3; font-weight: 700; }
+.u-valor, .e-valor { color: #2d3436; font-weight: 700; }
