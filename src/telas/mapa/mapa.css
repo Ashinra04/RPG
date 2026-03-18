@@ -1,1 +1,15 @@
 /* Tela de Mapa CSS */
+
+#tela-mapa {
+    width: 90%;
+    height: 90%;
+    background-image: url('/imagens/cenarios/Mapa-preview.png');
+    background-size: cover;
+    background-position: center;
+    border: 2px solid #d1b87a;
+    box-sizing: border-box;
+    padding: 20px;
+    position: relative;
+    display: block;
+    gap: 10px;
+}
